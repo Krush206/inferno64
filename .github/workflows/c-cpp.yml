@@ -20,7 +20,7 @@ jobs:
     - name: update_path
       run: echo "$ROOT/Linux/$objtype/bin" >> $GITHUB_PATH
     - name: build_mk
-      run: makemk.sh
+      run: ./makemk.sh
     - name: mk_dirs
       run: mk mkdirs
     - name: mk_install
