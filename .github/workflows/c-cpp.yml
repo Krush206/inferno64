@@ -1,0 +1,27 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: objtype
+      run: echo "objtype=amd64" >> $GITHUB_ENV
+    - name: inferno_root
+      run: echo "ROOT=${{ github.workspace }}" >> $GITHUB_ENV
+    - name: update_path
+      run: echo "$ROOT/Linux/$objtype/bin" >> $GITHUB_PATH
+    - name: build_mk
+      run: makemk.sh
+    - name: mk_dirs
+      run: mk mkdirs
+    - name: mk_install
+      run: mk install
